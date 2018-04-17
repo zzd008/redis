@@ -1,0 +1,20 @@
+1.解压缩redis-2.8.3.tar.gz
+2.make
+3.make install
+4.启动服务redis-server redis.conf
+5.测试服务安装，运行客户端：redis-cli
+
+
+6.主从配置
+修改从服务器的redis.conf,添加slaveof 192.168.137.18 6379
+运行过程中，通过redis-cli中命令可以动态不停机切换主从
+主：slaveof no one
+从：slaveof 192.168.137.19 6379
+7.配置从的持久化aof方式：
+关闭自动snapshot：
+#save 900 1
+#save 300 10
+#save 60 10000
+开启snapshot：
+appendonly yes
+此处可以动态在redis-cli中不停机运行命令：CONFIG SET APPENDONLY YES
